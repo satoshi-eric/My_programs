@@ -55,15 +55,26 @@ float argDegree(complexNumber n){
     return ((atan(n.b/n.a))/PI)*180;
 }
 
-float modulus(complexNumber n){
+float complexModulus(complexNumber n){
     return sqrt(pow(n.a,2) + pow(n.b, 2));
 }
 
 complexNumber powerComplex(complexNumber n1, complexNumber n2){
     complexNumber n3;
-    n3.a = pow(modulus(n1), n2.a)/exp(argRadian(n1)*n2.b)*(cos(argRadian(n1)*n2.a + log(modulus(n1)*n2.b)));
-    n3.b = pow(modulus(n1), n2.a)/exp(argRadian(n1)*n2.b)*(sin(argRadian(n1)*n2.a + log(modulus(n1)*n2.b)));
+    n3.a = pow(complexModulus(n1), n2.a)/exp(argRadian(n1)*n2.b)*(cos(argRadian(n1)*n2.a + log(complexModulus(n1)*n2.b)));
+    n3.b = pow(complexModulus(n1), n2.a)/exp(argRadian(n1)*n2.b)*(sin(argRadian(n1)*n2.a + log(complexModulus(n1)*n2.b)));
     return n3;
 }
+
+complexNumber complexSin(complexNumber n1){
+    complexNumber n2;
+    n2.a = ((exp(n1.b)*sin(n1.a))+(exp(-n1.b)*sin(n1.a)))/2; 
+    n2.b = ((exp(n1.b)*cos(n1.a))+(exp(-n1.b)*cos(n1.a)))/2;
+    return n2;
+}
+
+
+
+// adicionar funções sin, cos, tan, polarForm, ln 
 
 #endif
