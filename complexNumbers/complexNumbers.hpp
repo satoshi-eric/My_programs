@@ -25,7 +25,7 @@ class complexNumber{
         }
 };
 
-complexNumber soma(complexNumber n1, complexNumber n2){
+complexNumber add(complexNumber n1, complexNumber n2){
     complexNumber n3;
     n3.a = n1.a + n2.a;
     n3.b = n1.b + n2.b;
