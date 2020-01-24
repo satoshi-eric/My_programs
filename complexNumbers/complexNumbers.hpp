@@ -8,9 +8,10 @@ using namespace std;
 const float E = exp(1);
 
 /*
- * a: real part 
- * b: imaginary part
-*/ 
+     * the complex number starts 0 + 0i by standart
+     * real: real part
+     * img: imaginary part
+*/  
 class complexNumber{
     public:
         complexNumber(float real = 0.0, float img = 0.0){
@@ -19,9 +20,26 @@ class complexNumber{
         }
         float a;
         float b;
-        void setNumber(float real, float img){
-            this->a = real;
-            this->b = img;
+        float Re(){
+            return this->a;
+        }
+        float Im(){
+            return this->b;
+        }
+        float argRadian(){
+            return atan(this->b/this->a);
+        }
+        float argDegree(){
+            return (this->argRadian()/PI)*180;
+        }
+        float complexModulus(){
+            return sqrt(pow(this->a, 2) + pow(this->b, 2));
+        }
+        void printComplexNumber(){
+            printf("%.2f + %.2fi", this->a, this->b);
+        }
+        void printPolarForm(){
+            printf("|%.2f|*(cos(%.0f) + isin(%.0f)", this->complexModulus(), this->argDegree(), this->argDegree());
         }
 };
 
@@ -39,30 +57,10 @@ complexNumber mult(complexNumber n1, complexNumber n2){
     return n3;
 }
 
-float Re(complexNumber n){
-    return n.a;
-}
-
-float Im(complexNumber n){
-    return n.b;
-}
-
-float argRadian(complexNumber n){
-    return atan(n.b/n.a);
-}
-
-float argDegree(complexNumber n){
-    return ((atan(n.b/n.a))/PI)*180;
-}
-
-float complexModulus(complexNumber n){
-    return sqrt(pow(n.a,2) + pow(n.b, 2));
-}
-
 complexNumber powerComplex(complexNumber n1, complexNumber n2){
     complexNumber n3;
-    n3.a = pow(complexModulus(n1), n2.a)/exp(argRadian(n1)*n2.b)*(cos(argRadian(n1)*n2.a + log(complexModulus(n1)*n2.b)));
-    n3.b = pow(complexModulus(n1), n2.a)/exp(argRadian(n1)*n2.b)*(sin(argRadian(n1)*n2.a + log(complexModulus(n1)*n2.b)));
+    n3.a = pow(n1.complexModulus(), n2.a)/exp(n1.argRadian()*n2.b)*(cos(n1.argRadian()*n2.a + log(n1.complexModulus()*n2.b)));
+    n3.b = pow(n1.complexModulus(), n2.a)/exp(n1.argRadian()*n2.b)*(sin(n1.argRadian()*n2.a + log(n1.complexModulus()*n2.b)));
     return n3;
 }
 
@@ -73,8 +71,6 @@ complexNumber complexSin(complexNumber n1){
     return n2;
 }
 
-
-
-// adicionar funções sin, cos, tan, polarForm, ln 
+// adicionar funções cos, tan, , ln 
 
 #endif

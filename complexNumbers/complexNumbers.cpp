@@ -6,5 +6,5 @@ using namespace std;
 
 int main(){
     complexNumber n1(1, 1);
-    cout << complexSin(n1).a;   
+    n1.printPolarForm();
 }
