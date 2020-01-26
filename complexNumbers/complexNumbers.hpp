@@ -92,6 +92,4 @@ complexNumber complexLn(complexNumber n1){
     return n2;
 }
 
-// adicionar funções tan
-
 #endif
