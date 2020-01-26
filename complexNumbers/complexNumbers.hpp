@@ -70,7 +70,28 @@ complexNumber complexSin(complexNumber n1){
     n2.b = ((exp(n1.b)*cos(n1.a))+(exp(-n1.b)*cos(n1.a)))/2;
     return n2;
 }
+    
+complexNumber complexCos(complexNumber n1){
+    complexNumber n2;
+    n2.a = (cos(n1.a) * ((1/exp(n1.b)) + exp(n1.b)))/2;
+    n2.b = (sin(n1.a) * ((1/exp(n1.b)) + exp(n1.b)))/2;
+    return n2;
+}
 
-// adicionar funções cos, tan, , ln 
+complexNumber complexTan(complexNumber n1){
+    complexNumber n2;
+    n2.a = ((exp(2*n1.b) - exp(-2*n1.b)) * (pow(cos(n1.a), 2) - pow(sin(n1.a),2)))/(pow(exp(-n1.b) + exp(n1.b), 2));
+    n2.b = (-2*sin(n1.a)*cos(n1.a)*(exp(2*n1.b) - exp(-2*n1.b)))/(pow(exp(-n1.b) + exp(n1.b), 2));
+    return n2;
+}
+
+complexNumber complexLn(complexNumber n1){
+    complexNumber n2;
+    n2.a = log(n1.complexModulus());
+    n2.b = n1.argRadian();
+    return n2;
+}
+
+// adicionar funções tan
 
 #endif
