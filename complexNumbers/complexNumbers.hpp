@@ -14,12 +14,45 @@ const float E = exp(1);
 */  
 class complexNumber{
     public:
-        complexNumber(float real = 0.0, float img = 0.0){
+        float a;
+        float b;
+
+        complexNumber(){}
+        complexNumber(float real, float img):a(real), b(img){
             this->a = real;
             this->b = img;
         }
-        float a;
-        float b;
+
+        complexNumber operator+(complexNumber &n){
+            complexNumber res;
+            res.a = this->a + n.a;
+            res.b = this->b + n.b;
+            return res;
+        }
+        complexNumber operator-(complexNumber &n){
+            complexNumber res;
+            res.a = this->a + n.a;
+            res.b = this->b + n.b;
+            return res;
+        }
+        complexNumber operator*(complexNumber &n){
+            complexNumber res;
+            res.a = this->a*n.a - this->b*n.b;
+            res.b = this->a*n.b + this->b*n.a;
+            return res;
+        }
+        complexNumber operator/(complexNumber &n){
+            complexNumber res;
+            res.a = (this->a * n.a + this->b * n.b)/(pow(n.a, 2) + pow(n.b, 2));
+            res.b = (n.a * this->b - this->a * n.b)/(pow(n.a, 2) + pow(n.b, 2));
+        }
+        complexNumber operator^(complexNumber &n){
+            complexNumber res;
+            res.a = pow(this->complexModulus(), n.a)/exp(this->argRadian()*n.b)*(cos(this->argRadian()*n.a + log(this->complexModulus()*n.b)));
+            res.b = pow(this->complexModulus(), n.a)/exp(this->argRadian()*n.b)*(sin(this->argRadian()*n.a + log(this->complexModulus()*n.b)));
+            return res;
+        }
+        
         float Re(){
             return this->a;
         }
@@ -42,27 +75,6 @@ class complexNumber{
             printf("|%.2f|*(cos(%.0f) + isin(%.0f)", this->complexModulus(), this->argDegree(), this->argDegree());
         }
 };
-
-complexNumber add(complexNumber n1, complexNumber n2){
-    complexNumber n3;
-    n3.a = n1.a + n2.a;
-    n3.b = n1.b + n2.b;
-    return n3;
-}
-
-complexNumber mult(complexNumber n1, complexNumber n2){
-    complexNumber n3;
-    n3.a = n1.a*n2.a - n1.b*n2.b;
-    n3.b = n1.a*n2.b + n1.b*n2.a;
-    return n3;
-}
-
-complexNumber powerComplex(complexNumber n1, complexNumber n2){
-    complexNumber n3;
-    n3.a = pow(n1.complexModulus(), n2.a)/exp(n1.argRadian()*n2.b)*(cos(n1.argRadian()*n2.a + log(n1.complexModulus()*n2.b)));
-    n3.b = pow(n1.complexModulus(), n2.a)/exp(n1.argRadian()*n2.b)*(sin(n1.argRadian()*n2.a + log(n1.complexModulus()*n2.b)));
-    return n3;
-}
 
 complexNumber complexSin(complexNumber n1){
     complexNumber n2;
