@@ -7,7 +7,9 @@
 struct vetor criar_vetor(int tamanho_param, char tipo_param, void *vetor_param);
 void printar_vetor(struct vetor vet_param);
 void redefinir_vetor(struct vetor *vetor_param, int novo_tamanho_param, char novo_tipo_param, void *novo_vetor_param);
+
 void push(struct vetor *vet_param, numero num);
+
 
 
 typedef union numero
@@ -22,6 +24,7 @@ struct vetor
     int tamanho_membro;
     char tipo_membro;
     numero *vetor_membro;
+
     void (*printar_vetor)(struct vetor vet_param);
     void (*redefinir_vetor)(struct vetor *vetor_param, int novo_tamanho_param, char novo_tipo_param, void *novo_vetor_param);
     void (*push)(struct vetor *vet_param, numero num);
@@ -34,6 +37,7 @@ struct vetor criar_vetor(int tamanho_param, char tipo_param, void *vetor_param)
     vetor_instancia.tamanho_membro = tamanho_param; /* atribuindo o tamanhp do vetor */
     vetor_instancia.vetor_membro = (numero*)malloc(vetor_instancia.tamanho_membro * sizeof(numero)); /* alocando memória para o vetor */
     vetor_instancia.tipo_membro = tipo_param; /* atribuindo o tipo do vetor: int ou float */
+
     vetor_instancia.printar_vetor = printar_vetor; /* atribuindo a função printar_vetor */
     vetor_instancia.redefinir_vetor = redefinir_vetor; /* função para redefinir o vetor */
     vetor_instancia.push = push;
@@ -110,9 +114,11 @@ void printar_vetor(struct vetor vet_param)
     } 
 }
 
+
 /* 
  * A partir do vetor [vetor_param] redefine os membros do vetor
  */
+
 void redefinir_vetor(struct vetor *vetor_param, int novo_tamanho_param, char novo_tipo_param, void *novo_vetor_param)
 {
     free(vetor_param->vetor_membro);
@@ -144,6 +150,7 @@ void redefinir_vetor(struct vetor *vetor_param, int novo_tamanho_param, char nov
     }
 }
 
+
 /*
  * TODO
  * documentar função push
@@ -165,6 +172,7 @@ void push(struct vetor *vet_param, numero num)
     {
         free(vet_param->vetor_membro);
     }
+
 }
 
 #endif
