@@ -140,7 +140,7 @@ void redefinir_vetor(struct vetor *vetor_param, int novo_tamanho_param, char nov
     }
 }
 
-void push(vetor *vet_param, void *num)
+void push(struct vetor *vet_param, void *num)
 {
     
 }
