@@ -4,6 +4,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+struct vetor criar_vetor(int tamanho_param, char tipo_param, void *vetor_param);
+void printar_vetor(struct vetor vet_param);
+void redefinir_vetor(struct vetor *vetor_param, int novo_tamanho_param, char novo_tipo_param, void *novo_vetor_param);
+void push(struct vetor *vet_param, void *num);
+
+
 typedef union numero
 {
     int int_num;
@@ -19,6 +25,45 @@ struct vetor
     void (*printar)(struct vetor vet_param);
     void (*redefinir_vetor)(struct vetor *vetor_param, int novo_tamanho_param, char novo_tipo_param, void *novo_vetor_param);
 };
+
+/* cria um vetor de tamanho [tamanho_param]  de tipo [tipo] podendo ser int('i') ou float('f') atribuindo os valores do vetor [vetor_param] à esse vetor */ 
+struct vetor criar_vetor(int tamanho_param, char tipo_param, void *vetor_param)
+{
+    struct vetor vetor_instancia;
+    vetor_instancia.tamanho_membro = tamanho_param; /* atribuindo o tamanhp do vetor */
+    vetor_instancia.vetor_membro = (numero*)malloc(vetor_instancia.tamanho_membro * sizeof(numero)); /* alocando memória para o vetor */
+    vetor_instancia.tipo_membro = tipo_param; /* atribuindo o tipo do vetor: int ou float */
+    vetor_instancia.printar = printar_vetor; /* atribuindo a função printar_vetor */
+    vetor_instancia.redefinir_vetor = redefinir_vetor; /* função para redefinir o vetor */
+
+    /* se o vetor for do tipo float */ 
+    if(tipo_param == 'f')
+    {
+        /* atribuindo os valores float ao vetor */
+        for(int i = 0; i < vetor_instancia.tamanho_membro; i++)
+        {
+            vetor_instancia.vetor_membro[i].float_num = *((float*) vetor_param + i);
+        }
+    }
+    /* se o vetor for do tipo int */
+    else if(tipo_param == 'i')
+    {
+        /* atribuindo valores int ao vetor */
+        for(int i = 0; i < vetor_instancia.tamanho_membro; i++)
+        {
+            vetor_instancia.vetor_membro[i].int_num = *((int*) vetor_param + i);
+        }
+    }
+    /* a memória alocada para o vetor é liberada */
+    else
+    {
+        free(vetor_instancia.vetor_membro);
+        return vetor_instancia;
+    }
+    
+    return vetor_instancia;
+}
+
 
 /* função para printar o vetor */
 void printar_vetor(struct vetor vet_param)
@@ -95,42 +140,9 @@ void redefinir_vetor(struct vetor *vetor_param, int novo_tamanho_param, char nov
     }
 }
 
-/* cria um vetor de tamanho [tamanho_param]  de tipo [tipo] podendo ser int('i') ou float('f') atribuindo os valores do vetor [vetor_param] à esse vetor */ 
-struct vetor criar_vetor(int tamanho_param, char tipo_param, void *vetor_param)
+void push(vetor *vet_param, void *num)
 {
-    struct vetor vetor_instancia;
-    vetor_instancia.tamanho_membro = tamanho_param; /* atribuindo o tamanhp do vetor */
-    vetor_instancia.vetor_membro = (numero*)malloc(vetor_instancia.tamanho_membro * sizeof(numero)); /* alocando memória para o vetor */
-    vetor_instancia.tipo_membro = tipo_param; /* atribuindo o tipo do vetor: int ou float */
-    vetor_instancia.printar = printar_vetor; /* atribuindo a função printar_vetor */
-    vetor_instancia.redefinir_vetor = redefinir_vetor; /* função para redefinir o vetor */
-
-    /* se o vetor for do tipo float */ 
-    if(tipo_param == 'f')
-    {
-        /* atribuindo os valores float ao vetor */
-        for(int i = 0; i < vetor_instancia.tamanho_membro; i++)
-        {
-            vetor_instancia.vetor_membro[i].float_num = *((float*) vetor_param + i);
-        }
-    }
-    /* se o vetor for do tipo int */
-    else if(tipo_param == 'i')
-    {
-        /* atribuindo valores int ao vetor */
-        for(int i = 0; i < vetor_instancia.tamanho_membro; i++)
-        {
-            vetor_instancia.vetor_membro[i].int_num = *((int*) vetor_param + i);
-        }
-    }
-    /* a memória alocada para o vetor é liberada */
-    else
-    {
-        free(vetor_instancia.vetor_membro);
-        return vetor_instancia;
-    }
     
-    return vetor_instancia;
 }
 
 #endif
