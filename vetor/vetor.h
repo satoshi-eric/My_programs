@@ -7,10 +7,10 @@
 struct vetor criar_vetor(int tamanho_param, char tipo_param, void *vetor_param);
 void printar_vetor(struct vetor vet_param);
 void redefinir_vetor(struct vetor *vetor_param, int novo_tamanho_param, char novo_tipo_param, void *novo_vetor_param);
-void push(struct vetor *vet_param, numero num);
+void push(struct vetor *vet_param, union numero num);
 
 
-typedef union numero
+union numero
 {
     int int_num;
     float float_num;
@@ -21,18 +21,22 @@ struct vetor
 {
     int tamanho_membro;
     char tipo_membro;
-    numero *vetor_membro;
+    union numero *vetor_membro;
     void (*printar_vetor)(struct vetor vet_param);
     void (*redefinir_vetor)(struct vetor *vetor_param, int novo_tamanho_param, char novo_tipo_param, void *novo_vetor_param);
-    void (*push)(struct vetor *vet_param, numero num);
+    void (*push)(struct vetor *vet_param, union numero num);
 };
 
-/* cria um vetor de tamanho [tamanho_param]  de tipo [tipo] podendo ser int('i') ou float('f') atribuindo os valores do vetor [vetor_param] à esse vetor */ 
+/* cria um vetor 
+ * - tamanho_param: tamanho do vetor
+ * - tipo_param: o vetor pode ser de 2 tipos: float('f') ou int ('i')
+ * - vetor_param: a função copia todos os valores desse vetor. 
+*/ 
 struct vetor criar_vetor(int tamanho_param, char tipo_param, void *vetor_param)
 {
     struct vetor vetor_instancia;
     vetor_instancia.tamanho_membro = tamanho_param; /* atribuindo o tamanhp do vetor */
-    vetor_instancia.vetor_membro = (numero*)malloc(vetor_instancia.tamanho_membro * sizeof(numero)); /* alocando memória para o vetor */
+    vetor_instancia.vetor_membro = (union numero*)malloc(vetor_instancia.tamanho_membro * sizeof(numero)); /* alocando memória para o vetor */
     vetor_instancia.tipo_membro = tipo_param; /* atribuindo o tipo do vetor: int ou float */
     vetor_instancia.printar_vetor = printar_vetor; /* atribuindo a função printar_vetor */
     vetor_instancia.redefinir_vetor = redefinir_vetor; /* função para redefinir o vetor */
@@ -96,7 +100,7 @@ void printar_vetor(struct vetor vet_param)
         {
             if(i == 0)
             {
-                printf("[%f, ", vet_param.vetor_membro[i].float_num);
+                printf("[%.2f, ", vet_param.vetor_membro[i].float_num);
             }
             else if(i == vet_param.tamanho_membro-1)
             {
@@ -112,12 +116,16 @@ void printar_vetor(struct vetor vet_param)
 
 /* 
  * A partir do vetor [vetor_param] redefine os membros do vetor
+ * - vetor_param: vetor que será redefinido
+ * - novo_tamanho_param: novo tamanho do vetor
+ * - novo_tipo_param: caso tipo do vetor seja mudado
+ * - novo_vetor_param: a função copia todos os valores desse vetor. O vetor precisa ser do tipo int ou float
  */
 void redefinir_vetor(struct vetor *vetor_param, int novo_tamanho_param, char novo_tipo_param, void *novo_vetor_param)
 {
     free(vetor_param->vetor_membro);
     vetor_param->tamanho_membro = novo_tamanho_param;
-    vetor_param->vetor_membro = (numero*)malloc(vetor_param->tamanho_membro*sizeof(numero));
+    vetor_param->vetor_membro = (union numero*)malloc(vetor_param->tamanho_membro*sizeof(numero));
     vetor_param->tipo_membro = novo_tipo_param;
 
     if(novo_tipo_param == 'f')
@@ -144,22 +152,28 @@ void redefinir_vetor(struct vetor *vetor_param, int novo_tamanho_param, char nov
     }
 }
 
+
+
 /*
- * TODO
- * documentar função push
- * decidir se usar parametro num como union numero ou void*
+ * TODO:
+ * conflito com a função redefinir_vetor
+ * adicionar paâmetro nela para verificar se o vetor é do tipo float, int ou numero
+ * função que adiciona novo elemento no ultimo valor do vetor
+ * vet_param
  */ 
-void push(struct vetor *vet_param, numero num)
+void push(struct vetor *vet_param, union numero num)
 {
     int tamanho_vet = vet_param->tamanho_membro;
-    redefinir_vetor(vet_param, vet_param->tamanho_membro+1, vet_param->tipo_membro, vet_param->vetor_membro);
+    struct vetor vetor_temp;
+    redefinir_vetor(vet_param, vet_param->tamanho_membro+1, vet_param->tipo_membro, &vetor_temp.vetor_membro);
+
     if(vet_param->tipo_membro = 'f')
     {
-        vet_param->vetor_membro[tamanho_vet] = *(float *)num;
+        vet_param->vetor_membro[tamanho_vet].float_num = num.float_num;
     }
     else if(vet_param->tipo_membro = 'i')
     {
-        vet_param->vetor_membro[tamanho_vet] = *(int *)num; 
+        vet_param->vetor_membro[tamanho_vet].int_num = num.int_num;
     }
     else
     {
