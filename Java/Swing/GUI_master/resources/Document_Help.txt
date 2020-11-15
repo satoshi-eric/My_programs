@@ -1,0 +1,15 @@
+This program was written to be a simple educational project that shows how to use the basic of Graphical User Interface (Swing), and some software engineering techniques.
+The aim of the program is show different shapes according to menu choices.
+
+The menu options are very straight: 
+
+* From the "File" menu, one can choose among some available actions that draw shapes in the background, and finish the program;
+* From the "Help" menu, one can choose see standard texts: "Help", "Disclaimer", and "About".
+
+
+Technical stuff:
+
+* The program was written in Java 1.8 and runs on most of desktop and notebook operating systems.
+* No user information is collected, stored, or transmitted by the program.
+
+
