@@ -1,0 +1,10 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+#tetris {
+    width: 1280px;
+    height: 720px;
+    border: 1px solid;
+}
