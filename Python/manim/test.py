@@ -1,6 +1,6 @@
 from manimlib.imports import *
 
-class Cena(Scene):
+class Cene(Scene):
     def construct(self):
-        text = TextMobject("texto")
+        text = TextMobject("Hello")
         self.play(FadeIn(text))
