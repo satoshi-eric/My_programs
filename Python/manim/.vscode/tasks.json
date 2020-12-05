@@ -1,0 +1,46 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Render Image",
+            "type": "shell",
+            "command": "manim ${fileBasename} ${input:Scene} -s -r 1440",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Render Video Low Quality",
+            "type": "shell",
+            "command": "manim ${fileBasename} ${input:Scene} -pl",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Render Video High Quality",
+            "type": "shell",
+            "command": "manim ${fileBasename} ${input:Scene} -p",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ],
+    "inputs": [
+        {
+            "id": "Scene",
+            "description": "Enter de Scene you want to render.",
+            "default": "",
+            "type": "promptString"
+        }
+    ],
+    
+}
