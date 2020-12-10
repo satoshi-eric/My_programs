@@ -17,7 +17,7 @@ void linked_list_add_node_at_begin(linked_list *list, node *node_add);
 void linked_list_add_node_at_end(linked_list *list, node *node_add);
 int linked_list_length(linked_list *list);
 void linked_list_remove_node(linked_list *list, int position);
-node *linked_list_get_node(linked_list *list, int position)
+node *linked_list_get_node(linked_list *list, int position);
 
 /**
  * Constructor for linked list data structure
