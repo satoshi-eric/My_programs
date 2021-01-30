@@ -1,0 +1,16 @@
+C:\Users\satos\OneDrive\Documentos\GitHub\My_programs\C#\divisao\bin\Debug\net5.0\divisao.exe
+C:\Users\satos\OneDrive\Documentos\GitHub\My_programs\C#\divisao\bin\Debug\net5.0\divisao.deps.json
+C:\Users\satos\OneDrive\Documentos\GitHub\My_programs\C#\divisao\bin\Debug\net5.0\divisao.runtimeconfig.json
+C:\Users\satos\OneDrive\Documentos\GitHub\My_programs\C#\divisao\bin\Debug\net5.0\divisao.runtimeconfig.dev.json
+C:\Users\satos\OneDrive\Documentos\GitHub\My_programs\C#\divisao\bin\Debug\net5.0\divisao.dll
+C:\Users\satos\OneDrive\Documentos\GitHub\My_programs\C#\divisao\bin\Debug\net5.0\ref\divisao.dll
+C:\Users\satos\OneDrive\Documentos\GitHub\My_programs\C#\divisao\bin\Debug\net5.0\divisao.pdb
+C:\Users\satos\OneDrive\Documentos\GitHub\My_programs\C#\divisao\obj\Debug\net5.0\divisao.csprojAssemblyReference.cache
+C:\Users\satos\OneDrive\Documentos\GitHub\My_programs\C#\divisao\obj\Debug\net5.0\divisao.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\satos\OneDrive\Documentos\GitHub\My_programs\C#\divisao\obj\Debug\net5.0\divisao.AssemblyInfoInputs.cache
+C:\Users\satos\OneDrive\Documentos\GitHub\My_programs\C#\divisao\obj\Debug\net5.0\divisao.AssemblyInfo.cs
+C:\Users\satos\OneDrive\Documentos\GitHub\My_programs\C#\divisao\obj\Debug\net5.0\divisao.csproj.CoreCompileInputs.cache
+C:\Users\satos\OneDrive\Documentos\GitHub\My_programs\C#\divisao\obj\Debug\net5.0\divisao.dll
+C:\Users\satos\OneDrive\Documentos\GitHub\My_programs\C#\divisao\obj\Debug\net5.0\ref\divisao.dll
+C:\Users\satos\OneDrive\Documentos\GitHub\My_programs\C#\divisao\obj\Debug\net5.0\divisao.pdb
+C:\Users\satos\OneDrive\Documentos\GitHub\My_programs\C#\divisao\obj\Debug\net5.0\divisao.genruntimeconfig.cache
